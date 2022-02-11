@@ -1,4 +1,4 @@
-import random, sys # module
+import random, sys # modules
 from art import logo #logo
 print(logo)# create logo
 
@@ -6,7 +6,7 @@ print(logo)# create logo
 PlayerDeck= []
 EnemyDeck = []
 def card_give(deck,numOfcards=1):
-  cards = [11,2,3,4,5,6,7,8,9,10,10,10,10]
+  cards = [11,2,3,4,5,6,7,8,9,10,10,10]
   random.shuffle(cards)
   for i in range(numOfcards):  
     if cards[i]==11 and (sum(deck)+11)>=21:
@@ -33,12 +33,14 @@ else:
 while cont:
   game()
   sumOfenemy=sum(EnemyDeck)
-  while sum(EnemyDeck)<21 and sum(PlayerDeck) < 21:
+  while sum(EnemyDeck) and sum(PlayerDeck) < 22:
     print(f"Enemy card: {EnemyDeck[0]}")
     if sumOfenemy <13:
       card_give(EnemyDeck,1)
-    elif sumOfenemy<20 and (21-sumOfenemy) + random.randrange(0,5)>=8:
+    elif sumOfenemy<21 and (21-sumOfenemy) + random.randrange(0,7)>=6:
       card_give(EnemyDeck)
+      if sum(EnemyDeck)>=22:
+        break
 
 
     print(f"Your cards{PlayerDeck}")
@@ -48,10 +50,10 @@ while cont:
     else:
       print ("You did not choose a card ")
   print(EnemyDeck)
-  if sum(EnemyDeck)<21:#see who won
+  if sum(EnemyDeck)<22:#see who won
     print("You Lost!")
     EnemyScore += 1
-  elif sum(PlayerDeck)<21:
+  else:
     print("You won!")
     PlayerScore+=1
   print(f"You:{PlayerScore}  Opponent:{EnemyScore}")
@@ -65,7 +67,10 @@ if EnemyScore > PlayerScore:
   print("""Good job,
     But not good enough loser!!!!!""")
 else:
-  print("Loser")
+  print("Good job You won!")
+
+
+
 
 
 
